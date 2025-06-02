@@ -1,0 +1,74 @@
+[
+  {
+    "questionNo": "Q16",
+    "question1": "Three-sevenths plus two-sevenths equals ______.",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "five-sevenths"
+    ]
+  },
+  {
+    "questionNo": "Q17",
+    "question1": "Four-ninths added to three-ninths equals ______.",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "seven-ninths"
+    ]
+  },
+  {
+    "questionNo": "Q18",
+    "question1": "Six-ninths minus four-ninths equals ______.",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "two-ninths"
+    ]
+  },
+  {
+    "questionNo": "Q19",
+    "question1": "The sum of 5/7 and 1/7 is ______.",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "6/7"
+    ]
+  },
+  {
+    "questionNo": "Q20",
+    "question1": "5/8 is ______ more than 2/8.",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "3/8"
+    ]
+  },
+  {
+    "questionNo": "Q21",
+    "question1": "The difference between 9/10 and 3/10 is ______.",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "6/10"
+    ]
+  },
+  {
+    "questionNo": "Q22",
+    "question1": "Complete the pattern: 2/8, 4/8, ______ ",
+    "question2": ",______",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "6/8"
+    ],
+    "answer2": [
+      "8/8"
+    ]
+  },
+  {
+    "questionNo": "Q23",
+    "question1": "Fill in the blanks to complete the pattern: 7/9, ______, ",
+    "question2": " 5/9, ______, 3/9",
+    "type": "fill-in-the-blank",
+    "answer1": [
+      "6/9"
+    ],
+    "answer2": [
+      "4/9"
+    ]
+  }
+]

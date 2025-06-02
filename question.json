@@ -1,0 +1,134 @@
+[
+  {
+    "questionNo": "Q1",
+    "question": "Simplify: 2/3 × 3/4",
+    "options": [
+      "6/10",
+      "1/2",
+      "3/7",
+      "5/6"
+    ],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q2",
+    "question": "What is three-fourths multiplied by two-fifths?",
+    "options": [
+      "six-tenths",
+      "five-sixths",
+      "six-ninths",
+      "three-tenths"
+    ],
+    "correct": 3
+  },
+  {
+    "questionNo": "Q3",
+    "question": "What is 5/3 ÷ 1/6?",
+    "options": [
+      "30",
+      "10",
+      "5/18",
+      "1/10"
+    ],
+    "correct": 1
+  },
+  {
+    "questionNo": "Q4",
+    "question": "What is three-fourths divided by one-half?",
+    "options": [
+      "three-eighths",
+      "two-fourths",
+      "one and one-half",
+      "three-halves"
+    ],
+    "correct": 3
+  },
+  {
+    "questionNo": "Q5",
+    "question": "What is 5 times 2/5?",
+    "options": [
+      "5/10",
+      "1",
+      "2",
+      "3"
+    ],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q6",
+    "question": "What is four times two-thirds?",
+    "options": [
+      "eight-thirds",
+      "four-fifths",
+      "two-twelfths",
+      "six"
+    ],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q7",
+    "question": "What is 2/3 ÷ 4?",
+    "options": [
+      "2/10",
+      "8",
+      "1/6",
+      "2/3"
+    ],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q8",
+    "question": "What is one-half divided by five?",
+    "options": [
+      "two-fifths",
+      "five-halves",
+      "one-tenth",
+      "ten"
+    ],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q9",
+    "question": "What is one and one-third divided by one-half?",
+    "options": [
+      "two-thirds",
+      "one and one-half",
+      "two and two-thirds",
+      "two and one-half"
+    ],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q10",
+    "question": "Evaluate the following: <img src='./images/94.png' width=25% />",
+    "options": [
+      "8/15",
+      "4/7",
+      "7/3",
+      "1/2"
+    ],
+    "correct": 0
+  },
+  {
+    "questionNo": "Q11",
+    "question": "Find the value of the expression: <img src='./images/96.png' width=35% />",
+    "options": [
+      "1.png",
+      "2.png",
+      "97.png",
+      "3.png"
+    ],
+    "correct": 2
+  },
+  {
+    "questionNo": "Q12",
+    "question": "What is the result of the following? <img src='./images/98.png' width=50% />",
+    "options": [
+      "91/4",
+      "27/2",
+      "36/5",
+      "45/8"
+    ],
+    "correct": 0
+  }
+]

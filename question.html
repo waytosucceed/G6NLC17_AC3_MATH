@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activity 3 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="wts2.css" />
+
+    <style>
+        .imgdiv {
+            position: relative;
+        }
+
+        .input-container {
+            position: absolute;
+            bottom: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sentence-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 95%;
+            max-width: 700px;
+            margin-bottom: 1%;
+            font-size: 2vw;
+            font-weight: 550;
+        }
+
+        .sentence-container span {
+            padding: 0.5%;
+            text-align: center;
+            margin-right: 0.5%;
+        }
+
+        .sentence-container input {
+            font-size: 2vw;
+            font-weight: 550;
+            border: 2px solid black;
+            text-align: center;
+            margin: 0 0.5%;
+            padding: 0.3% 0.5%;
+            width: 10rem;
+        }
+
+        .sentence-container input.invalid {
+            border-color: red;
+        }
+
+        .answers {
+            margin-top: 2%;
+        }
+
+        .question {
+            position: absolute;
+            top: 5%;
+            left: 48%;
+            transform: translate(-50%, 0);
+            width: 75%;
+            color: black;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .smallbtn.active,
+        .smallbtn.default {
+            background-color: #f56c6c;
+            color: #ffffff;
+        }
+
+        #questiondiv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .messageContainer {
+            position: absolute;
+            bottom: 2%;
+            left: 78%;
+            /* transform: translateX(-50%); */
+            text-align: center;
+            z-index: 10;
+            color: white;
+        }
+
+        #secondImg {
+            position: absolute;
+            top: 25%;
+            left: 20%;
+        }
+
+
+
+
+
+
+
+        #submitbtn {
+            position: absolute;
+            margin-left: 20%;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            bottom: 18%;
+        }
+
+        #nextbtn {
+            position: absolute;
+            margin-left: 20%;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            bottom: 18%;
+        }
+
+        .btn {
+            font-family: fantasy;
+            position: relative;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .questionButtons {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .smallbtn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ddd;
+            cursor: pointer;
+            margin: 2px;
+        }
+
+        .flip {
+            font-size: 24px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <audio id="sound" src="points.mp3"></audio>
+    <audio id="fail" src="fail.mp3"></audio>
+    <div class="header" style="
+      width: auto;
+      box-shadow: 5px 5px 10px rgb(0, 0, 0);
+      padding-bottom: 10px;
+      margin-bottom:2%
+    ">
+        <img src="Logo.png" width="5%" style="float: left; margin-top: 25px; text-align: left" class="img-responsive" />
+        <span>
+            <img src="header.png" width="30%" height="" class="img-responsive" style="text-align: left" />
+        </span>
+    </div>
+    <center>
+        <h1 id="heading">Addition of Whole Numbers and Proper Fractions</h1>
+
+        <div id="questionButtons" class="questionButtons"></div>
+
+        <div class="maindiv container-fluid d-flex">
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 imgdiv">
+                <div id="question" class="question"></div>
+                <img id="math_ques" src="fill_img.jpg" width="70%" height="auto" />
+                <div class="input-container">
+                    <div id="sentence-container" class="sentence-container"></div>
+                </div>
+                <div>
+                    <button id="submitbtn" class="btn btn-success">Submit</button>
+                    <button id="nextbtn" class="btn btn-primary" style="display: none;">Next</button>
+                </div>
+                <div id="message" class="message mt-2"></div>
+            </div>
+        </div>
+    </center>
+
+    <script>
+        let questions = [];
+        let currentQuestion = 0;
+
+
+        function loadQuestion() {
+            const current = questions[currentQuestion];
+            const sentenceContainer = document.getElementById('sentence-container');
+            const questionImage = document.getElementById('math_ques');
+            questionImage.src = "fill_img.jpg";
+
+            sentenceContainer.innerHTML = '';
+            document.getElementById('message').innerHTML = '';
+            document.getElementById('nextbtn').style.display = 'none';
+            document.getElementById('submitbtn').style.display = 'inline-block';
+
+            let i = 1;
+            while (current[`question${i}`]) {
+                const sentenceDiv = document.createElement('div');
+                sentenceDiv.className = 'sentence-container';
+
+                const parts = current[`question${i}`].split("______");
+                for (let j = 0; j < parts.length; j++) {
+                    const span = document.createElement('span');
+                    span.innerHTML = parts[j];
+                    sentenceDiv.appendChild(span);
+
+                    if (j < parts.length - 1) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.id = `input${i}`;
+                        input.classList.add('form-control');
+                        input.classList.add(`input${i}`);
+                        // input.style.backgroundColor = 'rgb(249, 246, 159)';
+                        sentenceDiv.appendChild(input);
+                    }
+                }
+                sentenceContainer.appendChild(sentenceDiv);
+                i++;
+            }
+        }
+
+
+
+        function checkAnswers() {
+            const current = questions[currentQuestion];
+            let allCorrect = true;
+            let i = 1;
+
+            while (current[`answer${i}`]) {
+                const input = document.getElementById(`input${i}`);
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = current[`answer${i}`][0].trim().toLowerCase();
+
+                if (userAnswer === correctAnswer) {
+                    input.classList.remove('invalid');
+                } else {
+                    input.classList.add('invalid');
+                    allCorrect = false;
+                }
+                i++;
+            }
+
+            if (allCorrect) {
+                document.getElementById('message').innerHTML = "Good Job! <div class='flip'>&#128512;</div>";
+                document.getElementById('nextbtn').style.display = 'inline-block';
+                document.getElementById('submitbtn').style.display = 'none';
+                document.getElementById('sound').play();
+            } else {
+                document.getElementById('message').innerHTML = 'Try Again! <div class="flip">😎</div>';
+                document.getElementById('fail').play();
+            }
+        }
+
+// function nextQuestion() {
+//     if (currentQuestion < questions.length - 1) {
+//         currentQuestion++;
+//         loadQuestion();
+//         updateActiveButton();
+//     } else {
+//         // Hide all content
+//         document.body.innerHTML = '';
+
+//         // Create and show final image
+//         const finalImg = document.createElement('img');
+//         finalImg.src = 'last.jpg';
+//         finalImg.style.width = '60%';
+//         finalImg.style.height = 'auto';
+//         finalImg.style.display = 'block';
+//         finalImg.style.margin = '0 auto';
+//         finalImg.alt = 'Congratulations!';
+
+//         document.body.appendChild(finalImg);
+//     }
+// }
+
+function nextQuestion() {
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+        updateActiveButton();
+    } else {
+        // Hide everything except the header
+        const elementsToHide = [
+            'questionButtons',
+            'heading',
+            'question',
+            'sentence-container',
+            'sentence-container2',
+            'message',
+            'nextbtn',
+            'submitbtn',
+            'secondImg'
+        ];
+
+        elementsToHide.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+
+        const mainDiv = document.querySelector('.maindiv');
+        if (mainDiv) mainDiv.style.display = 'none';
+
+        // Remove any active states from question buttons
+        const buttons = document.querySelectorAll('.smallbtn');
+        buttons.forEach(button => button.classList.remove('active'));
+
+        // Show the final image
+        const finalImg = document.getElementById('math_ques');
+        finalImg.src = 'last.jpg';
+        finalImg.style.width = '70%';
+        finalImg.style.display = 'block';
+        finalImg.style.margin = '30px auto';
+        finalImg.alt = 'Congratulations!';
+        finalImg.position = 'absolute!';
+        finalImg.top = '10%';
+        finalImg.left = '17%'
+
+
+    
+
+        // Append below header
+        // document.body.appendChild(finalImg);
+    }
+}
+
+
+
+
+function goToQuestion(index) {
+            currentQuestion = index;
+            loadQuestion();
+            updateActiveButton();
+        }
+
+        function updateActiveButton() {
+            const buttons = document.querySelectorAll('.smallbtn');
+            buttons.forEach((btn, idx) => {
+                if (idx === currentQuestion) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+
+        window.onload = function () {
+            fetch('question1.json')
+                .then(response => response.json())
+                .then(data => {
+                    questions = data;
+
+                    const questionButtonsContainer = document.getElementById('questionButtons');
+                    questions.forEach((q, index) => {
+                        const button = document.createElement('button');
+                        button.textContent = q.questionNo || `Q${index + 1}`;
+                        button.classList.add('smallbtn');
+                        button.onclick = () => goToQuestion(index);
+                        if (index === 0) button.classList.add('active');
+                        questionButtonsContainer.appendChild(button);
+                    });
+
+                    loadQuestion();
+
+                    document.getElementById('submitbtn').onclick = checkAnswers;
+                    document.getElementById('nextbtn').onclick = nextQuestion;
+                })
+                .catch(error => {
+                    console.error("Failed to load questions:", error);
+                    document.getElementById('sentence-container').innerHTML = "<span>Failed to load questions.</span>";
+                });
+        };
+    </script>
+</body>
+
+</html>
